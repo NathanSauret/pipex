@@ -6,9 +6,11 @@
 /*   By: nsauret <nsauret@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 17:28:53 by nsauret           #+#    #+#             */
-/*   Updated: 2024/08/06 17:36:44 by nsauret          ###   ########.fr       */
+/*   Updated: 2024/08/06 17:38:24 by nsauret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "pipex.h"
 
 int	verify_args(int argc, char *argv[])
 {

@@ -4,7 +4,8 @@ CC		= cc
 CFLAGS	= -Wall -Werror -Wextra -g3 -I $(INCLUDE)
 include ./Src/Libft/Makefile
 
-SRC =
+SRC =	Src/exit_error.c	\
+		Src/verify_args.c
 OBJ = $(SRC:.c=.o)
 
 all: libft_all $(NAME)
