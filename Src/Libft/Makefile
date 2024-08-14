@@ -5,7 +5,16 @@ INCLUDE = Libft
 COUNTER = 0
 N := 0
 
-LIBFT_SRC = ./Src/Libft/ft_atoi.c	\
+LIBFT_SRC =	./Src/Libft/ft_get_next_line/ft_get_next_line.c	\
+			./Src/Libft/ft_get_next_line/ft_get_next_line_utils.c	\
+			./Src/Libft/ft_printf/ft_printf.c	\
+			./Src/Libft/ft_printf/ft_print_char.c	\
+			./Src/Libft/ft_printf/ft_print_str.c	\
+			./Src/Libft/ft_printf/ft_print_pointer.c	\
+			./Src/Libft/ft_printf/ft_print_int.c	\
+			./Src/Libft/ft_printf/ft_print_unsigned.c	\
+			./Src/Libft/ft_printf/ft_print_hex.c	\
+			./Src/Libft/ft_atoi.c	\
 			./Src/Libft/ft_bzero.c	\
 			./Src/Libft/ft_calloc.c	\
 			./Src/Libft/ft_isalnum.c	\
@@ -14,6 +23,16 @@ LIBFT_SRC = ./Src/Libft/ft_atoi.c	\
 			./Src/Libft/ft_isdigit.c	\
 			./Src/Libft/ft_isprint.c	\
 			./Src/Libft/ft_itoa.c	\
+			./Src/Libft/ft_lstadd_back_bonus.c	\
+			./Src/Libft/ft_lstadd_front_bonus.c	\
+			./Src/Libft/ft_lstclear_bonus.c	\
+			./Src/Libft/ft_lstdelone_bonus.c	\
+			./Src/Libft/ft_lstiter_bonus.c	\
+			./Src/Libft/ft_lstlast_bonus.c	\
+			./Src/Libft/ft_lstmap_bonus.c	\
+			./Src/Libft/ft_lstnew_bonus.c	\
+			./Src/Libft/ft_lstpop.c	\
+			./Src/Libft/ft_lstsize_bonus.c	\
 			./Src/Libft/ft_memchr.c	\
 			./Src/Libft/ft_memcmp.c	\
 			./Src/Libft/ft_memcpy.c	\
@@ -39,24 +58,7 @@ LIBFT_SRC = ./Src/Libft/ft_atoi.c	\
 			./Src/Libft/ft_substr.c	\
 			./Src/Libft/ft_tolower.c	\
 			./Src/Libft/ft_toupper.c	\
-			./Src/Libft/ft_lstnew_bonus.c	\
-			./Src/Libft/ft_lstadd_front_bonus.c	\
-			./Src/Libft/ft_lstsize_bonus.c	\
-			./Src/Libft/ft_lstlast_bonus.c	\
-			./Src/Libft/ft_lstadd_back_bonus.c	\
-			./Src/Libft/ft_lstdelone_bonus.c	\
-			./Src/Libft/ft_lstclear_bonus.c	\
-			./Src/Libft/ft_lstiter_bonus.c	\
-			./Src/Libft/ft_lstmap_bonus.c	\
-			./Src/Libft/ft_lstpop.c	\
 			./Src/Libft/ft_uitoa.c	\
-			./Src/Libft/ft_printf.c	\
-			./Src/Libft/ft_print_char.c	\
-			./Src/Libft/ft_print_str.c	\
-			./Src/Libft/ft_print_pointer.c	\
-			./Src/Libft/ft_print_int.c	\
-			./Src/Libft/ft_print_unsigned.c	\
-			./Src/Libft/ft_print_hex.c
 
 LIBFT_OBJ = $(LIBFT_SRC:.c=.o)
 
@@ -85,7 +87,7 @@ $(LIBFT_OBJ): %.o: %.c
 			fi \
 		fi \
 	fi
-	@echo "[$(COUNTER) / 52]"
+	@echo "[$(COUNTER) / 54]"
 
 libft_clean:
 	@rm -f $(LIBFT_OBJ)

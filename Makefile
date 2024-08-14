@@ -1,4 +1,4 @@
-NAME 	= push_swap
+NAME 	= pipex
 INCLUDE	= include
 CC		= cc
 CFLAGS	= -Wall -Werror -Wextra -g3 -I $(INCLUDE)
@@ -21,7 +21,7 @@ clean: libft_clean
 
 fclean: libft_fclean
 	@rm -f $(LIBFT_OBJ) $(OBJ)
-	@rm -f $(NAME) tester checker
+	@rm -f $(NAME)
 	@rm -rf .vscode
 	@clear
 	@echo "full cleaning done!"

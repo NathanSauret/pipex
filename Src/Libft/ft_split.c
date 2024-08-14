@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nsauret <nsauret@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nathan <nathan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 16:34:01 by nsauret           #+#    #+#             */
-/*   Updated: 2024/08/06 16:06:45 by nsauret          ###   ########.fr       */
+/*   Updated: 2024/08/14 15:56:32 by nathan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,9 +85,6 @@ char	**ft_split(char const *s, char c)
 	list_ptr = list;
 	help_int = ft_split_helper(list_ptr, list, s, c);
 	if (help_int == 0)
-	{
-		free(list);
 		return (NULL);
-	}
 	return (list);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   verify_args.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nsauret <nsauret@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nathan <nathan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 17:28:53 by nsauret           #+#    #+#             */
-/*   Updated: 2024/08/06 17:38:24 by nsauret          ###   ########.fr       */
+/*   Updated: 2024/08/14 16:52:19 by nathan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,8 @@
 
 int	verify_args(int argc, char *argv[])
 {
-
+	if (argc < 5)
+		return (0);
+	argv[0][0] = '0';
+	return (1);
 }
