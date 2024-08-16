@@ -6,7 +6,7 @@
 /*   By: nathan <nathan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 18:11:51 by nathan            #+#    #+#             */
-/*   Updated: 2024/08/16 18:13:22 by nathan           ###   ########.fr       */
+/*   Updated: 2024/08/17 01:23:50 by nathan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,17 @@ void	command_to_pipe(char *argv[], int fd[2])
 	dup2(fd_file, 0);
 	if (execve(path, args, NULL) == -1)
 	{
-		while (*args)
-			free(args++);
+		write(2, args[0], ft_strlen(args[0]));
+		write(2, ": command not found\n", 20);
+		ft_freetabstr(args);
 		free(args);
-		exit_error(2, args[0]);
+		free(path);
+		close(fd_file);
+		exit(1);
 	}
-	while (*args)
-		free(args++);
-	free(args);
+	ft_freetabstr(args);
+	free(path);
+	close(fd_file);
 }
 
 void	command_using_pipe(char *argv[], int fd[2])
@@ -52,12 +55,15 @@ void	command_using_pipe(char *argv[], int fd[2])
 	dup2(fd_file, 1);
 	if (execve(path, args, NULL) == -1)
 	{
-		while (*args)
-			free(args++);
+		write(2, args[0], ft_strlen(args[0]));
+		write(2, ": command not found\n", 20);
+		ft_freetabstr(args);
 		free(args);
-		exit_error(2, args[0]);
+		free(path);
+		close(fd_file);
+		exit(1);
 	}
-	while (*args)
-		free(args++);
-	free(args);
+	ft_freetabstr(args);
+	free(path);
+	close(fd_file);
 }

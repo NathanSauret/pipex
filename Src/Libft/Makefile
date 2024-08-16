@@ -17,6 +17,7 @@ LIBFT_SRC =	./Src/Libft/ft_get_next_line/ft_get_next_line.c	\
 			./Src/Libft/ft_atoi.c	\
 			./Src/Libft/ft_bzero.c	\
 			./Src/Libft/ft_calloc.c	\
+			./Src/Libft/ft_freetabstr.c	\
 			./Src/Libft/ft_isalnum.c	\
 			./Src/Libft/ft_isalpha.c	\
 			./Src/Libft/ft_isascii.c	\
@@ -87,7 +88,7 @@ $(LIBFT_OBJ): %.o: %.c
 			fi \
 		fi \
 	fi
-	@echo "[$(COUNTER) / 54]"
+	@echo "[$(COUNTER) / 55]"
 
 libft_clean:
 	@rm -f $(LIBFT_OBJ)

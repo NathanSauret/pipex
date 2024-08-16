@@ -6,7 +6,7 @@
 /*   By: nathan <nathan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 17:25:51 by nsauret           #+#    #+#             */
-/*   Updated: 2024/08/16 18:11:02 by nathan           ###   ########.fr       */
+/*   Updated: 2024/08/17 01:06:16 by nathan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,9 @@ void	exit_error(int error_case, char *arg)
 		perror(arg);
 	else if (error_case == 2)
 	{
-		write(2, arg, strlen(arg));
+		write(2, arg, ft_strlen(arg));
 		write(2, ": command not found\n", 20);
+		free(arg);
 	}
 	exit (1);
 }
