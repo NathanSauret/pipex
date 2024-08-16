@@ -6,7 +6,7 @@
 /*   By: nathan <nathan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 17:25:51 by nsauret           #+#    #+#             */
-/*   Updated: 2024/08/15 16:03:32 by nathan           ###   ########.fr       */
+/*   Updated: 2024/08/16 18:11:02 by nathan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,18 @@
 
 // case_0 = general case
 // case_1 = file or cmd problem
-
+// case_2 = command not found
 
 void	exit_error(int error_case, char *arg)
 {
 	if (error_case == 0)
-		perror("Error\n");
+		write(2, "Error\n", 7);
 	else if (error_case == 1)
 		perror(arg);
+	else if (error_case == 2)
+	{
+		write(2, arg, strlen(arg));
+		write(2, ": command not found\n", 20);
+	}
 	exit (1);
 }

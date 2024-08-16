@@ -5,6 +5,7 @@ CFLAGS	= -Wall -Werror -Wextra -g3 -I $(INCLUDE)
 include ./Src/Libft/Makefile
 
 SRC =	Src/exit_error.c	\
+		Src/pipex.c	\
 		Src/verify_args.c
 OBJ = $(SRC:.c=.o)
 
