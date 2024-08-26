@@ -6,34 +6,44 @@
 /*   By: nsauret <nsauret@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 18:11:51 by nathan            #+#    #+#             */
-/*   Updated: 2024/08/20 16:26:16 by nsauret          ###   ########.fr       */
+/*   Updated: 2024/08/26 14:52:20 by nsauret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
+static void	free_paths(char **paths)
+{
+	ft_freetabstr(paths);
+	free(paths);
+}
+
 static char	*get_path(char **envp, char *command)
 {
 	char	**paths;
 	char	*path;
+	int		i;
 
 	while (ft_strncmp("PATH", *envp, 4))
 		envp++;
 	paths = ft_split(*envp + 5, ':');
-	while (*paths)
+	if (!paths)
+		return (NULL);
+	i = 0;
+	while (paths[i])
 	{
-		*paths = ft_strjoin(*paths, "/");
-		*paths = ft_strjoin(*paths, command);
-		if (access(*paths, 0) == 0)
+		paths[i] = ft_strjoin(paths[i], "/");
+		paths[i] = ft_strjoin(paths[i], command);
+		if (!paths[i])
+			return (free_paths(paths), NULL);
+		if (access(paths[i], 0) == 0)
 		{
-			path = ft_strdup(*paths);
-			ft_freetabstr(paths);
-			return (path);
+			path = ft_strdup(paths[i]);
+			return (free_paths(paths), path);
 		}
-		paths++;
+		i++;
 	}
-	ft_freetabstr(paths);
-	return (NULL);
+	return (free_paths(paths), NULL);
 }
 
 void	command_to_pipe(char *argv[], char **envp, int fd[2], int *pid)
@@ -47,12 +57,14 @@ void	command_to_pipe(char *argv[], char **envp, int fd[2], int *pid)
 	close(fd[1]);
 	args = ft_split(argv[2], ' ');
 	path = get_path(envp, args[0]);
+	if (!path)
+		exit_error(2, path, args, pid);
 	fd_file = open(argv[1], O_RDONLY);
 	dup2(fd_file, 0);
 	if (execve(path, args, envp) == -1)
 	{
 		close(fd_file);
-		exit_error(2, NULL, args, pid);
+		exit_error(2, path, args, pid);
 	}
 	ft_freetabstr(args);
 	close(fd_file);
@@ -69,6 +81,8 @@ void	command_using_pipe(char *argv[], char **envp, int fd[2], int *pid)
 	close(fd[1]);
 	args = ft_split(argv[3], ' ');
 	path = get_path(envp, args[0]);
+	if (!path)
+		exit_error(2, path, args, pid);
 	fd_file = open(argv[4], O_TRUNC | O_CREAT | O_RDWR, 0000644);
 	dup2(fd_file, 1);
 	if (execve(path, args, envp) == -1)

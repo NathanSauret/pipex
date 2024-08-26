@@ -6,7 +6,7 @@
 /*   By: nsauret <nsauret@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 10:07:34 by nsauret           #+#    #+#             */
-/*   Updated: 2024/08/20 16:27:02 by nsauret          ###   ########.fr       */
+/*   Updated: 2024/08/22 14:57:38 by nsauret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static void	last(int argc, char *argv[], int *pid, int fd[2])
 	if (pid[argc - 4] == -1)
 		exit_error(0, NULL);
 	if (pid[argc - 4] == 0)
-		last_command(argv, argc, fd, O_R);
+		last_command(argv, argc, fd, O_RDWR);
 }
 
 int	main(int argc, char *argv[])

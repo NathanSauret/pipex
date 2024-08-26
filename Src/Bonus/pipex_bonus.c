@@ -6,7 +6,7 @@
 /*   By: nsauret <nsauret@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 18:11:51 by nathan            #+#    #+#             */
-/*   Updated: 2024/08/20 12:34:57 by nsauret          ###   ########.fr       */
+/*   Updated: 2024/08/22 14:58:04 by nsauret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void	last_command(char *argv[], int argc, int fd[2], int write_way)
 	close(fd[1]);
 	args = ft_split(argv[argc - 2], ' ');
 	path = ft_strjoin("/bin/", args[0]);
-	fd_file = open(argv[argc - 1], O_TRUNC | O_CREAT | O_RDWR, 0000644);
+	fd_file = open(argv[argc - 1], O_TRUNC | O_CREAT | write_way, 0000644);
 	dup2(fd_file, 1);
 	if (execve(path, args, NULL) == -1)
 	{
