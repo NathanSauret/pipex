@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nsauret <nsauret@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nathan <nathan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 18:11:51 by nathan            #+#    #+#             */
-/*   Updated: 2024/08/26 14:52:20 by nsauret          ###   ########.fr       */
+/*   Updated: 2024/08/30 18:22:48 by nathan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,19 +79,17 @@ void	command_using_pipe(char *argv[], char **envp, int fd[2], int *pid)
 	dup2(fd[0], STDIN_FILENO);
 	close(fd[0]);
 	close(fd[1]);
+	fd_file = open(argv[4], O_TRUNC | O_CREAT | O_RDWR, 0000644);
+	dup2(fd_file, 1);
 	args = ft_split(argv[3], ' ');
 	path = get_path(envp, args[0]);
 	if (!path)
 		exit_error(2, path, args, pid);
-	fd_file = open(argv[4], O_TRUNC | O_CREAT | O_RDWR, 0000644);
-	dup2(fd_file, 1);
 	if (execve(path, args, envp) == -1)
 	{
-		free(path);
 		close(fd_file);
 		exit_error(2, NULL, args, pid);
 	}
-	free(path);
 	ft_freetabstr(args);
 	close(fd_file);
 }

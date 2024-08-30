@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nsauret <nsauret@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nathan <nathan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 17:20:10 by nsauret           #+#    #+#             */
-/*   Updated: 2024/08/22 16:33:08 by nsauret          ###   ########.fr       */
+/*   Updated: 2024/08/30 18:27:09 by nathan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ static void	first(char *argv[], char **envp, int *pid, int fd[2])
 		exit_error(0, NULL, NULL, pid);
 	if (pid[0] == 0)
 		command_to_pipe(argv, envp, fd, pid);
+	if (waitpid(pid[0], NULL, 0) == -1)
+		exit_error(0, NULL, NULL, pid);
 }
 
 static void	last(char *argv[], char **envp, int *pid, int fd[2])
@@ -35,17 +37,20 @@ int	main(int argc, char *argv[], char *envp[])
 	int	fd[2];
 	int	*pid;
 
-	verify_args(argc, argv);
+	if (argc != 5)
+		exit_error(0, NULL, NULL, NULL);
 	if (pipe(fd) == -1)
 		exit_error(0, NULL, NULL, NULL);
 	pid = malloc(sizeof(int) * 2 + 1);
 	if (!pid)
 		exit_error(0, NULL, NULL, NULL);
-	first(argv, envp, pid, fd);
+	if (access(argv[1], F_OK) == 0 && access(argv[1], R_OK) == 0)
+		first(argv, envp, pid, fd);
+	else
+		perror(argv[1]);
 	last(argv, envp, pid, fd);
 	close(fd[0]);
 	close(fd[1]);
-	waitpid(pid[0], NULL, 0);
 	waitpid(pid[1], NULL, 0);
 	free(pid);
 	return (0);

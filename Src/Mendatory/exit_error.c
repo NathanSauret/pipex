@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit_error.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nsauret <nsauret@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nathan <nathan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 17:25:51 by nsauret           #+#    #+#             */
-/*   Updated: 2024/08/20 16:26:36 by nsauret          ###   ########.fr       */
+/*   Updated: 2024/08/30 18:20:36 by nathan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 // case_0 = general case
 // case_1 = file or cmd problem
 // case_2 = command not found
+
+// static void	permission_denied(int error_case, char **args)
 
 void	exit_error(int error_case, char *arg, char **args, int *pid)
 {
@@ -25,7 +27,7 @@ void	exit_error(int error_case, char *arg, char **args, int *pid)
 	else if (error_case == 2)
 	{
 		write(2, args[0], ft_strlen(args[0]));
-		write(2, ": command not found\n", 20);
+		write(2, ": command not found\n", 21);
 	}
 	if (arg)
 		free(arg);
