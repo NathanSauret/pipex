@@ -17,7 +17,7 @@ echo
 echo
 ARG='./pipex infile cat cat outfile'
 echo $ARG; eval $ARG
-valgrind $ARG > tmp 2>&1
+valgrind --trace-children=yes $ARG > tmp 2>&1
 cat tmp | grep -a "ERROR"; cat tmp | grep -a "no leaks"
 echo
 
@@ -30,7 +30,7 @@ echo
 echo
 ARG='./pipex infile cat cat'
 echo $ARG; eval $ARG
-valgrind $ARG > tmp 2>&1
+valgrind --trace-children=yes $ARG > tmp 2>&1
 cat tmp | grep -a "ERROR"; cat tmp | grep -a "no leaks"
 echo
 
@@ -39,7 +39,7 @@ echo "~"
 echo
 ARG='./pipex infile cat cat outfile patapon'
 echo $ARG; eval $ARG
-valgrind $ARG > tmp 2>&1
+valgrind --trace-children=yes $ARG > tmp 2>&1
 cat tmp | grep -a "ERROR"; cat tmp | grep -a "no leaks"
 echo
 
@@ -48,7 +48,7 @@ echo "~"
 echo
 ARG='./pipex infile cat cat outfile'
 echo $ARG; eval $ARG
-valgrind $ARG > tmp 2>&1
+valgrind --trace-children=yes $ARG > tmp 2>&1
 cat tmp | grep -a "ERROR"; cat tmp | grep -a "no leaks"
 echo
 
@@ -57,7 +57,7 @@ echo "~"
 echo
 ARG='./pipex infile wrong_command "echo write this anyway" outfile'
 echo $ARG; eval $ARG
-valgrind $ARG > tmp 2>&1
+valgrind --trace-children=yes $ARG > tmp 2>&1
 cat tmp | grep -a "ERROR"; cat tmp | grep -a "no leaks"
 echo
 
@@ -66,7 +66,7 @@ echo "~"
 echo
 ARG='./pipex infile cat wrong_command outfile'
 echo $ARG; eval $ARG
-valgrind $ARG > tmp 2>&1
+valgrind --trace-children=yes $ARG > tmp 2>&1
 cat tmp | grep -a "ERROR"; cat tmp | grep -a "no leaks"
 echo
 
@@ -75,7 +75,7 @@ echo "~"
 echo
 ARG='./pipex infile wrong_command wrong_command outfile'
 echo $ARG; eval $ARG
-valgrind $ARG > tmp 2>&1
+valgrind --trace-children=yes $ARG > tmp 2>&1
 cat tmp | grep -a "ERROR"; cat tmp | grep -a "no leaks"
 echo
 
@@ -84,14 +84,14 @@ echo "~"
 echo
 ARG='./pipex wrong_infile cat "echo write this anyway" outfile'
 echo $ARG; eval $ARG
-valgrind $ARG > tmp 2>&1
+valgrind --trace-children=yes $ARG > tmp 2>&1
 cat tmp | grep -a "ERROR"; cat tmp | grep -a "no leaks"
 echo
 
 echo
 ARG='./pipex wrong_infile cat wrong_command outfile'
 echo $ARG; eval $ARG
-valgrind $ARG > tmp 2>&1
+valgrind --trace-children=yes $ARG > tmp 2>&1
 cat tmp | grep -a "ERROR"; cat tmp | grep -a "no leaks"
 echo
 
@@ -105,7 +105,7 @@ echo
 echo
 ARG='./pipex infile cat "echo write this anyway" outfile'
 echo $ARG; eval $ARG
-valgrind $ARG > tmp 2>&1
+valgrind --trace-children=yes $ARG > tmp 2>&1
 cat tmp | grep -a "ERROR"; cat tmp | grep -a "no leaks"
 echo
 
@@ -114,7 +114,7 @@ echo "~"
 echo
 ARG='./pipex infile cat wrong_command outfile'
 echo $ARG; eval $ARG
-valgrind $ARG > tmp 2>&1
+valgrind --trace-children=yes $ARG > tmp 2>&1
 cat tmp | grep -a "ERROR"; cat tmp | grep -a "no leaks"
 echo
 
