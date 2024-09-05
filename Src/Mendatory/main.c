@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nathan <nathan@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nsauret <nsauret@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 17:20:10 by nsauret           #+#    #+#             */
-/*   Updated: 2024/08/30 19:18:07 by nathan           ###   ########.fr       */
+/*   Updated: 2024/09/05 18:04:55 by nsauret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-static void	first(char *argv[], char **envp, int *pid, int fd[2])
+static void	first(char *argv[], char *envp[], int *pid, int fd[2])
 {
 	pid[0] = fork();
 	if (pid[0] == -1)
@@ -23,7 +23,7 @@ static void	first(char *argv[], char **envp, int *pid, int fd[2])
 		exit_error(0, NULL, NULL, pid);
 }
 
-static void	last(char *argv[], char **envp, int *pid, int fd[2])
+static void	last(char *argv[], char *envp[], int *pid, int fd[2])
 {
 	pid[1] = fork();
 	if (pid[1] == -1)

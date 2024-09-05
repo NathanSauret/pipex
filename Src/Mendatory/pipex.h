@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nathan <nathan@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nsauret <nsauret@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 17:27:23 by nsauret           #+#    #+#             */
-/*   Updated: 2024/08/30 18:10:13 by nathan           ###   ########.fr       */
+/*   Updated: 2024/09/05 18:06:15 by nsauret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 void	exit_error(int error_case, char *arg, char **args, int *pid);
 
 // pipex.c
-void	command_to_pipe(char *argv[], char **envp, int fd[2], int *pid);
-void	command_using_pipe(char *argv[], char **envp, int fd[2], int *pid);
+void	command_to_pipe(char *argv[], char *envp[], int fd[2], int *pid);
+void	command_using_pipe(char *argv[], char *envp[], int fd[2], int *pid);
 
 #endif

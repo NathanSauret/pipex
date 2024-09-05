@@ -16,6 +16,7 @@ rm infile > /dev/null 2>&1
 echo "\t\t\t~~~ [WITHOUT INFILE] ~~~"
 echo
 
+# normal without infile
 echo
 echo empty > outfile
 ARG='./pipex infile cat cat outfile'
@@ -36,6 +37,7 @@ echo The quick brown fox jumps over norminette > infile
 echo "\t\t\t~~~ [WITH INFILE] ~~~"
 echo
 
+# Not enough parameters
 echo
 echo empty > outfile
 ARG='./pipex infile cat cat'
@@ -45,6 +47,7 @@ echo
 
 echo "~"
 
+#Too much parameters
 echo
 echo empty > outfile
 ARG='./pipex infile cat cat outfile patapon'
@@ -54,6 +57,7 @@ echo
 
 echo "~"
 
+# nrmal with infile
 echo
 echo empty > outfile
 ARG='./pipex infile cat cat outfile'
@@ -69,6 +73,7 @@ echo
 
 echo "~"
 
+# wrong first command
 echo
 echo empty > outfile
 ARG='./pipex infile wrong_command "echo write this anyway" outfile'
@@ -83,6 +88,7 @@ echo
 
 echo "~"
 
+# wrong second command
 echo
 echo empty > outfile
 ARG='./pipex infile cat wrong_command outfile'
@@ -99,6 +105,7 @@ echo
 
 echo "~"
 
+# Wrong both commands
 echo
 echo empty > outfile
 ARG='./pipex infile wrong_command wrong_command outfile'
@@ -115,6 +122,7 @@ echo
 
 echo "~"
 
+# wrong infile
 echo
 echo empty > outfile
 ARG='./pipex wrong_infile cat "echo write this anyway" outfile'
@@ -127,6 +135,9 @@ echo $ARG; eval $ARG
 echo -n "outfile: " && cat outfile
 echo
 
+echo "~"
+
+# wrong infile and wrong second command
 echo
 echo empty > outfile
 ARG='./pipex wrong_infile cat wrong_command outfile'
@@ -139,11 +150,29 @@ echo $ARG; eval $ARG
 echo -n "outfile: " && cat outfile
 echo
 
+echo "~"
+
+# absolute command
+echo
+echo empty > outfile
+ARG='./pipex infile cat /usr/bin/cat outfile'
+echo $ARG; eval $ARG
+echo -n "outfile: " && cat outfile
+echo
+echo empty > outfile
+ARG='< infile cat | /usr/bin/cat > outfile'
+echo $ARG; eval $ARG
+echo -n "outfile: " && cat outfile
+echo
+
+
+
 echo
 chmod 000 infile
 echo "\t\t\t~~~ [WITH WRONG PERMISSIONS INFILE] ~~~"
 echo
 
+# normal wrong infile permissions
 echo
 echo empty > outfile
 ARG='./pipex infile cat "echo write this anyway" outfile'
@@ -158,11 +187,13 @@ echo
 
 echo "~"
 
+# normal wrong infile permissions and wrong second command
 echo
 echo empty > outfile
 ARG='./pipex infile cat wrong_command outfile'
 echo $ARG; eval $ARG
 echo -n "outfile: " && cat outfile
+echo
 echo
 echo empty > outfile
 ARG='< infile cat | wrong_command > outfile'
@@ -170,6 +201,31 @@ echo $ARG; eval $ARG
 echo -n "outfile: " && cat outfile
 echo
 
+
+
+echo
 chmod 777 infile
+echo "\t\t\t~~~ [WITHOUT ENVIRONMENT] ~~~"
+echo
+
+# without environment with commands
+echo
+echo empty > outfile
+ARG='env -i ./pipex infile cat cat outfile'
+echo $ARG; eval $ARG
+echo -n "outfile: " && cat outfile
+echo
+echo
+
+echo "~"
+
+# without environment with absolute commands
+echo
+echo empty > outfile
+ARG='env -i ./pipex infile /usr/bin/cat /usr/bin/cat outfile'
+echo $ARG; eval $ARG
+echo -n "outfile: " && cat outfile
+echo
+
 rm infile
 rm outfile
