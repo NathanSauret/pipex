@@ -145,6 +145,22 @@ echo
 
 echo
 chmod 777 infile
+chmod 000 outfile
+echo "\t\t\t~~~ [WITH WRONG PERMISSIONS OUTFILE] ~~~"
+echo
+
+# normal wrong outfile permissions and wrong second command
+echo
+ARG='./pipex infile cat wrong_command outfile'
+echo $ARG; eval $ARG
+valgrind --trace-children=yes $ARG > tmp 2>&1
+cat tmp | grep -a "ERROR"; cat tmp | grep -a "no leaks"
+echo
+
+
+
+echo
+chmod 777 outfile
 echo "\t\t\t~~~ [WITHOUT PATH] ~~~"
 echo
 
@@ -156,7 +172,7 @@ valgrind --trace-children=yes $ARG > tmp 2>&1
 cat tmp | grep -a "ERROR"; cat tmp | grep -a "no leaks"
 echo
 
-# echo "~"
+echo "~"
 
 # without path with absolute commands
 echo

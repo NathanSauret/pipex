@@ -6,7 +6,7 @@
 /*   By: nsauret <nsauret@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 17:20:10 by nsauret           #+#    #+#             */
-/*   Updated: 2024/09/09 13:02:15 by nsauret          ###   ########.fr       */
+/*   Updated: 2024/09/09 13:55:18 by nsauret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,15 @@ int	main(int argc, char *argv[], char *envp[])
 		first(argv, envp, pid, fd);
 	else
 		perror(argv[1]);
-	last(argv, envp, pid, fd);
-	close(fd[0]);
-	close(fd[1]);
-	waitpid(pid[1], NULL, 0);
+	if (access(argv[4], F_OK) == 0 && access(argv[4], R_OK) != 0)
+		perror(argv[4]);
+	else
+	{
+		last(argv, envp, pid, fd);
+		close(fd[0]);
+		close(fd[1]);
+		waitpid(pid[1], NULL, 0);
+	}
 	free(pid);
 	return (0);
 }

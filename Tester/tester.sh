@@ -207,6 +207,25 @@ echo
 
 echo
 chmod 777 infile
+chmod 000 outfile
+echo "\t\t\t~~~ [WITH WRONG PERMISSIONS OUTFILE] ~~~"
+echo
+
+# normal wrong outfile permissions
+echo
+ARG='./pipex infile cat "echo write this anyway" outfile'
+echo $ARG; eval $ARG
+echo -n "outfile: " && cat outfile
+echo
+ARG='< infile cat | echo write this anyway > outfile'
+echo $ARG; eval $ARG
+echo -n "outfile: " && cat outfile
+echo
+
+
+
+echo
+chmod 777 outfile
 echo "\t\t\t~~~ [WITHOUT PATH] ~~~"
 echo
 
