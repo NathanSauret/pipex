@@ -78,9 +78,39 @@ echo
 
 echo "~"
 
-# Wrong both commands
+# wrong both commands
 echo
 ARG='./pipex infile wrong_command wrong_command outfile'
+echo $ARG; eval $ARG
+valgrind --trace-children=yes $ARG > tmp 2>&1
+cat tmp | grep -a "ERROR"; cat tmp | grep -a "no leaks"
+echo
+
+echo "~"
+
+# empty first command
+echo
+ARG='./pipex infile "" cat outfile'
+echo $ARG; eval $ARG
+valgrind --trace-children=yes $ARG > tmp 2>&1
+cat tmp | grep -a "ERROR"; cat tmp | grep -a "no leaks"
+echo
+
+echo "~"
+
+# empty second command
+echo
+ARG='./pipex infile cat "" outfile'
+echo $ARG; eval $ARG
+valgrind --trace-children=yes $ARG > tmp 2>&1
+cat tmp | grep -a "ERROR"; cat tmp | grep -a "no leaks"
+echo
+
+echo "~"
+
+# empty second command
+echo
+ARG='./pipex infile "" "" outfile'
 echo $ARG; eval $ARG
 valgrind --trace-children=yes $ARG > tmp 2>&1
 cat tmp | grep -a "ERROR"; cat tmp | grep -a "no leaks"

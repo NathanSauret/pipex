@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit_error.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nathan <nathan@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nsauret <nsauret@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 17:25:51 by nsauret           #+#    #+#             */
-/*   Updated: 2024/08/30 18:20:36 by nathan           ###   ########.fr       */
+/*   Updated: 2024/09/09 15:06:39 by nsauret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 // case_0 = general case
 // case_1 = file or cmd problem
 // case_2 = command not found
+// case_3 = problem without msg
 
 // static void	permission_denied(int error_case, char **args)
 

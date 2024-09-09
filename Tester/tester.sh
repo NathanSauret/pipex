@@ -122,6 +122,57 @@ echo
 
 echo "~"
 
+# empty first command
+echo
+echo empty > outfile
+ARG='./pipex infile "" cat outfile'
+echo $ARG; eval $ARG
+echo -n "outfile: " && cat outfile
+echo
+echo
+echo empty > outfile
+ARG='< infile "" | cat > outfile'
+echo $ARG; eval $ARG
+echo -n "outfile: " && cat outfile
+echo
+echo
+
+echo "~"
+
+# empty second command
+echo
+echo empty > outfile
+ARG='./pipex infile cat "" outfile'
+echo $ARG; eval $ARG
+echo -n "outfile: " && cat outfile
+echo
+echo
+echo empty > outfile
+ARG='< infile cat | "" > outfile'
+echo $ARG; eval $ARG
+echo -n "outfile: " && cat outfile
+echo
+echo
+
+echo "~"
+
+# empty both command
+echo
+echo empty > outfile
+ARG='./pipex infile "" "" outfile'
+echo $ARG; eval $ARG
+echo -n "outfile: " && cat outfile
+echo
+echo
+echo empty > outfile
+ARG='< infile "" | "" > outfile'
+echo $ARG; eval $ARG
+echo -n "outfile: " && cat outfile
+echo
+echo
+
+echo "~"
+
 # wrong infile
 echo
 echo empty > outfile
