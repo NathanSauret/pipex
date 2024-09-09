@@ -6,7 +6,7 @@
 /*   By: nsauret <nsauret@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 16:34:01 by nsauret           #+#    #+#             */
-/*   Updated: 2024/09/05 18:15:02 by nsauret          ###   ########.fr       */
+/*   Updated: 2024/09/09 12:40:11 by nsauret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ static int	ft_count_words(char const *s, char c)
 {
 	int		word_count;
 
+	if (!s || !c)
+		return (0);
 	word_count = 0;
 	while (*s)
 	{
@@ -76,10 +78,14 @@ char	**ft_split(char const *s, char c)
 	char	**list;
 	char	**list_ptr;
 	int		help_int;
+	int		len;
 
-	if (!s)
+	if (!s || !c)
 		return (NULL);
-	list = malloc(sizeof(char *) * (ft_count_words(s, c) + 1));
+	len = ft_count_words(s, c);
+	if (len == 0)
+		return (NULL);
+	list = malloc(sizeof(char *) * (len + 1));
 	if (!list)
 		return (NULL);
 	list_ptr = list;

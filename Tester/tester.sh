@@ -144,10 +144,12 @@ ARG='./pipex wrong_infile cat wrong_command outfile'
 echo $ARG; eval $ARG
 echo -n "outfile: " && cat outfile
 echo
+echo
 echo empty > outfile
 ARG='< wrong_infile cat | wrong_command > outfile'
 echo $ARG; eval $ARG
 echo -n "outfile: " && cat outfile
+echo
 echo
 
 echo "~"
@@ -205,10 +207,10 @@ echo
 
 echo
 chmod 777 infile
-echo "\t\t\t~~~ [WITHOUT ENVIRONMENT] ~~~"
+echo "\t\t\t~~~ [WITHOUT PATH] ~~~"
 echo
 
-# without environment with commands
+# without path with commands
 echo
 echo empty > outfile
 ARG='env -i ./pipex infile cat cat outfile'
@@ -219,7 +221,7 @@ echo
 
 echo "~"
 
-# without environment with absolute commands
+# without path with absolute commands
 echo
 echo empty > outfile
 ARG='env -i ./pipex infile /usr/bin/cat /usr/bin/cat outfile'

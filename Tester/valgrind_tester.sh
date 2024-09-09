@@ -145,10 +145,10 @@ echo
 
 echo
 chmod 777 infile
-echo "\t\t\t~~~ [WITHOUT ENVIRONMENT] ~~~"
+echo "\t\t\t~~~ [WITHOUT PATH] ~~~"
 echo
 
-# without environment with commands
+# without path with commands
 echo
 ARG='env -i ./pipex infile cat cat outfile'
 echo $ARG; eval $ARG
@@ -156,9 +156,9 @@ valgrind --trace-children=yes $ARG > tmp 2>&1
 cat tmp | grep -a "ERROR"; cat tmp | grep -a "no leaks"
 echo
 
-echo "~"
+# echo "~"
 
-# without environment with absolute commands
+# without path with absolute commands
 echo
 ARG='env -i ./pipex infile /usr/bin/cat /usr/bin/cat outfile'
 echo $ARG; eval $ARG
