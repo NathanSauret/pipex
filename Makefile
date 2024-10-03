@@ -4,26 +4,20 @@ CC		= cc
 CFLAGS	= -Wall -Werror -Wextra -g3 -I $(INCLUDE)
 include ./Src/Libft/Makefile
 
-SRC =	Src/Mendatory/main.c	\
-		Src/Mendatory/exit_error.c	\
-		Src/Mendatory/pipex.c	\
-		Src/Mendatory/get_path.c
+SRC =	Src/check_args.c	\
+		Src/exit_error.c	\
+		Src/free.c	\
+		Src/get_files.c	\
+		Src/get_path.c	\
+		Src/here_doc.c	\
+		Src/main.c	\
+		Src/pipes_utils.c	\
+		Src/pipex.c
 OBJ = $(SRC:.c=.o)
-
-SRC_BONUS =	Src/Bonus/main_bonus.c	\
-			Src/Bonus/exit_error_bonus.c	\
-			Src/Bonus/pipex_bonus.c	\
-			Src/Bonus/get_path_bonus.c
-OBJ_BONUS = $(SRC_BONUS:.c=.o)
 
 all: libft_all $(NAME)
 $(NAME): $(OBJ)
 	@$(CC) $(CFLAGS) $(SRC) $(LIBFT_NAME) -o $(NAME)
-	@clear
-	@echo "Compilation done!"
-
-bonus: libft_all
-	@$(CC) $(CFLAGS) $(SRC_BONUS) $(LIBFT_NAME) -o $(NAME)
 	@clear
 	@echo "Compilation done!"
 

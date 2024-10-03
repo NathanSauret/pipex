@@ -1,21 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_freetabstr.c                                    :+:      :+:    :+:   */
+/*   get_path.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nsauret <nsauret@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/17 00:16:47 by nathan            #+#    #+#             */
-/*   Updated: 2024/10/03 17:48:46 by nsauret          ###   ########.fr       */
+/*   Created: 2024/09/09 10:56:59 by nsauret           #+#    #+#             */
+/*   Updated: 2024/10/03 14:49:24 by nsauret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "pipex.h"
 
-void	ft_freetabstr(char **tab)
+char	*get_path(char **envp)
 {
-	if (!tab || !*tab)
-		return ;
-	while (*tab)
-		free(*tab++);
+	while (ft_strncmp("PATH", *envp, 4))
+		envp++;
+	return (*envp + 5);
 }

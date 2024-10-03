@@ -6,13 +6,13 @@
 /*   By: nathan <nathan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 17:05:47 by nsauret           #+#    #+#             */
-/*   Updated: 2024/08/13 17:07:04 by nathan           ###   ########.fr       */
+/*   Updated: 2024/09/15 00:05:58 by nathan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*get_next_line(int fd)
+char	*get_next_line(int fd, int status)
 {
 	char		*buffer;
 	static char	*stache;
@@ -37,17 +37,17 @@ char	*get_next_line(int fd)
 		if (!stache || ft_strchr(stache, '\n'))
 			break ;
 	}
-	return (free_and_line(buffer, &stache, sz));
+	return (free_and_line(buffer, &stache, sz, status));
 }
 
-char	*free_and_line(char *buffer, char **stache, int sz)
+char	*free_and_line(char *buffer, char **stache, int sz, int status)
 {
 	char	*line;
 
 	free(buffer);
 	if (!*stache)
 		return (NULL);
-	if ((sz == 0 && (*stache)[0] == 0) || sz == -1)
+	if (status == 0 || (sz == 0 && (*stache)[0] == 0) || sz == -1)
 	{
 		free(*stache);
 		*stache = NULL;
