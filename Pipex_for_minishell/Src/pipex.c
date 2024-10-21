@@ -6,7 +6,7 @@
 /*   By: nsauret <nsauret@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 18:11:51 by nathan            #+#    #+#             */
-/*   Updated: 2024/10/18 16:15:59 by nsauret          ###   ########.fr       */
+/*   Updated: 2024/10/21 18:09:03 by nsauret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,25 +89,16 @@ static int	child(t_all *all, char **argv, char **envp)
 
 void	pipex(t_all *all, char *argv[], char *envp[])
 {
-	char	*cmd_sleep_check;
-
 	all->idx = -1;
 	while (++(all->idx) < all->cmd_nb)
 	{
-		cmd_sleep_check = ft_split(argv[2 + all->here_doc + all->idx], ' ')[0];
-		if (!ft_strncmp(cmd_sleep_check, "sleep", ft_strlen(cmd_sleep_check)))
+		if (ft_strncmp(argv[2 + all->here_doc + all->idx], "sleep", 5))
 		{
-			if (!sleep_case(all, argv))
-			{
-				if (all->infile >= 0)
-					child(all, argv, envp);
-				else if (all->idx > 0)
-					child(all, argv, envp);
-			}
+			if (all->infile >= 0)
+				child(all, argv, envp);
+			else if (all->idx > 0)
+				child(all, argv, envp);
 		}
-		else if (all->infile >= 0)
-			child(all, argv, envp);
-		else if (all->idx > 0)
-			child(all, argv, envp);
 	}
+	sleep_case(all, argv, envp);
 }

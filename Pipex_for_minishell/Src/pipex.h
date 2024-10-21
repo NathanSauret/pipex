@@ -6,7 +6,7 @@
 /*   By: nsauret <nsauret@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 17:27:23 by nsauret           #+#    #+#             */
-/*   Updated: 2024/10/18 17:28:21 by nsauret          ###   ########.fr       */
+/*   Updated: 2024/10/21 15:41:24 by nsauret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ typedef struct s_all
 	pid_t	pid;
 	char	**cmd_args;
 	char	*cmd;
+	int		msi;
 }	t_all;
 
 // check_args.c
@@ -65,6 +66,6 @@ void	close_pipes(t_all *all);
 void	pipex(t_all *all, char **argv, char **envp);
 
 // sleep_case.c
-int		sleep_case(t_all *all, char **argv);
+int		sleep_case(t_all *all, char **argv, char **envp);
 
 #endif
