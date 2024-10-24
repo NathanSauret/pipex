@@ -6,7 +6,7 @@
 /*   By: nsauret <nsauret@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 17:20:10 by nsauret           #+#    #+#             */
-/*   Updated: 2024/10/21 18:00:55 by nsauret          ###   ########.fr       */
+/*   Updated: 2024/10/24 15:55:27 by nsauret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ static void	set_values(int argc, char *argv[], char *envp[], t_all *all)
 		exit_error(all, 1, "Error: pipe");
 	all->env_path = get_path(envp);
 	all->cmd_paths = ft_split(all->env_path, ':');
-	all->msi = -1;
 }
 
 int	main(int argc, char *argv[], char *envp[])

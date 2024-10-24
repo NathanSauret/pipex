@@ -273,8 +273,8 @@ echo
 # without path with commands
 echo
 echo empty > outfile
-ARG='env -i ./pipex infile cat cat outfile'
-echo $ARG; eval $ARG
+ARG='./pipex infile cat cat outfile'
+echo $ARG; eval env -i $ARG
 echo -n "outfile: " && cat outfile
 echo
 echo
@@ -284,8 +284,21 @@ echo "~"
 # without path with absolute commands
 echo
 echo empty > outfile
-ARG='env -i ./pipex infile /usr/bin/cat /usr/bin/cat outfile'
-echo $ARG; eval $ARG
+ARG='./pipex infile /usr/bin/cat /usr/bin/cat outfile'
+echo $ARG; eval env -i $ARG
+echo -n "outfile: " && cat outfile
+echo
+
+echo
+echo "\t\t\t~~~ [TIME TESTS] ~~~"
+echo
+
+# two sleeps
+echo
+echo empty > outfile
+ARG='./pipex infile "" "sleep 1" "sleep 3" "echo write this anyway" outfile'
+echo $ARG; time eval $ARG
+echo
 echo -n "outfile: " && cat outfile
 echo
 

@@ -6,7 +6,7 @@
 /*   By: nsauret <nsauret@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 17:27:23 by nsauret           #+#    #+#             */
-/*   Updated: 2024/10/21 15:41:24 by nsauret          ###   ########.fr       */
+/*   Updated: 2024/10/24 15:55:20 by nsauret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ typedef struct s_all
 	pid_t	pid;
 	char	**cmd_args;
 	char	*cmd;
-	int		msi;
 }	t_all;
 
 // check_args.c
