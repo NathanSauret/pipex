@@ -6,7 +6,7 @@
 /*   By: nsauret <nsauret@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 14:56:46 by nsauret           #+#    #+#             */
-/*   Updated: 2024/10/24 16:51:05 by nsauret          ###   ########.fr       */
+/*   Updated: 2024/10/25 16:04:49 by nsauret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,10 @@ void	parent_free(t_all *all)
 	int	i;
 
 	i = 0;
-	close(all->infile);
-	close(all->outfile);
+	if (all->infile)
+		close(all->infile);
+	if (all->outfile)
+		close(all->outfile);
 	if (all->here_doc)
 		unlink(".heredoc_tmp");
 	while (all->cmd_paths && all->cmd_paths[i])

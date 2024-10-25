@@ -6,7 +6,7 @@
 /*   By: nsauret <nsauret@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 16:34:01 by nsauret           #+#    #+#             */
-/*   Updated: 2024/10/04 15:56:11 by nsauret          ###   ########.fr       */
+/*   Updated: 2024/10/25 15:09:39 by nsauret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ static int	ft_split_helper(char **list_ptr, char **list, char const *s, char c)
 	return (1);
 }
 
-char	**ft_split(char const *s, char c)
+char	**ft_split(char *s, char c)
 {
 	char	**list;
 	char	**list_ptr;
